@@ -20,6 +20,8 @@ CREATE TABLE moves (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(20) NOT NULL,
     description VARCHAR(300) NOT NULL,
-    power INTEGER, CHECK (power >= 0 || power < 1000),
-    accuracy INTEGER, CHECK (accuracy >= 0 || accuracy <= 100)
+    power INTEGER DEFAULT 0, CHECK (power >= 0 AND power < 1000),
+    accuracy INTEGER, CHECK (accuracy >= 0 AND accuracy <= 100),
+    pokemon_id INTEGER NOT NULL,
+    CONSTRAINT fk_pokemon FOREIGN KEY (pokemon_id) REFERENCES pokemon(id) ON DELETE CASCADE
 );
